@@ -18,7 +18,7 @@
 
             
             <nav class="py-4 space-y-1">
-                <a href="{{ route('dashboard') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
+                <a href="{{ route('home') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
                     <span class="mr-3">🏠</span> Főoldal
                 </a>
                 <a href="{{ route('adatbazis') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">

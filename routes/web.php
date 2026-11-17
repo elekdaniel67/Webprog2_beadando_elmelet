@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AdminController;
 
-Route::get('/', function () { 
-    return view('welcome'); 
+Route::get('/', function () {
+    return view('home');
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
