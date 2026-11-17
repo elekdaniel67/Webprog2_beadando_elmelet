@@ -3,10 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UzenetController;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/kapcsolat', function () {
+    return view('kapcsolat');
+})->name('kapcsolat');
+
+Route::post('/kapcsolat', [UzenetController::class, 'kuldes'])
+    ->name('kapcsolat.kuldes');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () { 
@@ -27,13 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('adatbazis', compact('sutik', 'arak', 'tartalmak'));
     })->name('adatbazis');
 
-    Route::get('/kapcsolat', function () {
-        return view('kapcsolat');
-    })->name('kapcsolat');
-
-    Route::get('/uzenetek', function () {
-        return view('uzenetek');
-    })->name('uzenetek');
+Route::get('/uzenetek', [UzenetController::class, 'lista'])
+    ->name('uzenetek');
 });
 
 Route::get('exercise1', function () { 
