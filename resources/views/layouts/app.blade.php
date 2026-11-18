@@ -35,11 +35,11 @@
                         <span class="mr-3">💬</span> Üzenetek
                     </a>
                     {{-- JAVÍTVA: role === 1 (szám), mert a seeder így menti el --}}
-                    @if(auth()->user()->role === 1)
-                        <a href="{{ route('workers.index') }}" class="flex items-center px-6 py-3 text-sm font-medium text-indigo-400 hover:bg-gray-900 hover:text-indigo-300 transition">
-                            <span class="mr-3">⚙️</span> CRUD (Admin)
+                    @can('manage-sutik')
+                        <a href="{{ route('sutik.index') }}" class="flex items-center px-6 py-3 text-sm font-medium text-indigo-400 hover:bg-gray-900 hover:text-indigo-300 transition">
+                            <span class="mr-3">⚙️</span> Sütemények kezelése
                         </a>
-                    @endif
+                    @endcan
                 @endauth
             </nav>
         </div>
