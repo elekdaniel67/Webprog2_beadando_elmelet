@@ -9,6 +9,14 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/adatbazis', function () {
+    $sutik = DB::table('suti')->get();
+    $arak = DB::table('ar')->get()->groupBy('sutiid');
+    $tartalmak = DB::table('tartalom')->get()->groupBy('sutiid');
+
+    return view('adatbazis', compact('sutik', 'arak', 'tartalmak'));
+})->name('adatbazis');
+
 Route::get('/kapcsolat', function () {
     return view('kapcsolat');
 })->name('kapcsolat');
@@ -17,34 +25,30 @@ Route::post('/kapcsolat', [UzenetController::class, 'kuldes'])
     ->name('kapcsolat.kuldes');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () { 
-        return view('dashboard'); 
+    Route::get('dashboard', function () {
+        return view('dashboard');
     })->name('dashboard');
-    
-    Route::get('user', function () { 
-        return view('user'); 
-    })->name("user");
-    
-    Route::get('admin', [AdminController::class, 'adminPage'])->name('admin');
-    Route::get('workers', [AdminController::class, 'adminPage'])->name('workers.index');
-    
-    Route::get('/adatbazis', function () {
-        $sutik = DB::table('suti')->get();
-        $arak = DB::table('ar')->get()->groupBy('sutiid');
-        $tartalmak = DB::table('tartalom')->get()->groupBy('sutiid');
-        return view('adatbazis', compact('sutik', 'arak', 'tartalmak'));
-    })->name('adatbazis');
 
-Route::get('/uzenetek', [UzenetController::class, 'lista'])
-    ->name('uzenetek');
+    Route::get('user', function () {
+        return view('user');
+    })->name('user');
+
+    Route::get('admin', [AdminController::class, 'adminPage'])
+        ->name('admin');
+
+    Route::get('workers', [AdminController::class, 'adminPage'])
+        ->name('workers.index');
+
+    Route::get('/uzenetek', [UzenetController::class, 'lista'])
+        ->name('uzenetek');
 });
 
-Route::get('exercise1', function () { 
-    return view('view1'); 
+Route::get('exercise1', function () {
+    return view('view1');
 });
 
-Route::get('introduction', function () { 
-    return view('introduction'); 
+Route::get('introduction', function () {
+    return view('introduction');
 })->name('introduction');
 
 require __DIR__.'/auth.php';
