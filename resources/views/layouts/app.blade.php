@@ -27,6 +27,9 @@
                 <a href="{{ route('kapcsolat') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
                     <span class="mr-3">✉️</span> Kapcsolat
                 </a>
+                <a href="{{ route('diagram') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
+                    <span class="mr-3">📊</span> Diagram
+                </a>
                 @auth
                     <a href="{{ route('uzenetek') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
                         <span class="mr-3">💬</span> Üzenetek

@@ -22,7 +22,14 @@ Route::get('/kapcsolat', function () {
 
 Route::post('/kapcsolat', [UzenetController::class, 'kuldes'])
     ->name('kapcsolat.kuldes');
+Route::get('/diagram', function () {
+    $adatok = Suti::selectRaw('tipus, COUNT(*) as darab')
+        ->groupBy('tipus')
+        ->orderBy('tipus')
+        ->get();
 
+    return view('diagram', compact('adatok'));
+})->name('diagram');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return view('dashboard');
