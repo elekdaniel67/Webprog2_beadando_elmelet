@@ -60,12 +60,14 @@
     </aside>
 
     
+    <div class="flex-1 flex flex-col min-w-0 h-full">
     <main class="flex-1 overflow-y-auto bg-gray-900 p-10">
         @yield('content')
     </main>
 
-    <footer>
+    <footer class="bg-gray-900 border-t border-gray-800 px-6 py-4 text-center text-sm text-gray-400">
         <p>Készítők: Nemes E. Lina (D4TUXP), Elek Dániel (XZN3PZ)</p>
     </footer>
+</div>
 </body>
 </html>

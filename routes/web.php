@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Suti;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AdminController;
@@ -10,11 +11,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/adatbazis', function () {
-    $sutik = DB::table('suti')->get();
-    $arak = DB::table('ar')->get()->groupBy('sutiid');
-    $tartalmak = DB::table('tartalom')->get()->groupBy('sutiid');
+    $sutik = Suti::with(['arak', 'tartalmak'])->get();
 
-    return view('adatbazis', compact('sutik', 'arak', 'tartalmak'));
+    return view('adatbazis', compact('sutik'));
 })->name('adatbazis');
 
 Route::get('/kapcsolat', function () {
