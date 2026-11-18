@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SutiController;
 use App\Models\Suti;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +48,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/uzenetek', [UzenetController::class, 'lista'])
         ->name('uzenetek');
+    Route::resource('sutik', SutiController::class)
+    ->parameters(['sutik' => 'suti'])
+    ->except(['show'])
+    ->middleware('can:manage-sutik');
 });
 
 Route::get('exercise1', function () {

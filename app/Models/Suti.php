@@ -10,6 +10,12 @@ class Suti extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'nev',
+        'tipus',
+        'dijazott',
+    ];
+
     public function arak()
     {
         return $this->hasMany(Ar::class, 'sutiid');
