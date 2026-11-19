@@ -30,6 +30,9 @@
                 <a href="{{ route('diagram') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
                     <span class="mr-3">📊</span> Diagram
                 </a>
+                <a href="{{ route('teszt') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
+                    <span class="mr-3">🧮</span> Teszt
+                </a>
                 @auth
                     <a href="{{ route('uzenetek') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
                         <span class="mr-3">💬</span> Üzenetek

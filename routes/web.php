@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KalkulatorController;
 use App\Http\Controllers\SutiController;
 use App\Models\Suti;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,11 @@ Route::get('/diagram', function () {
 
     return view('diagram', compact('adatok'));
 })->name('diagram');
+Route::get('/teszt', [KalkulatorController::class, 'index'])
+    ->name('teszt');
+
+Route::post('/teszt', [KalkulatorController::class, 'szamol'])
+    ->name('teszt.szamol');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return view('dashboard');
