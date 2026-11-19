@@ -10,9 +10,8 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        $email = env('SEED_ADMIN_EMAIL');
-        $jelszo = env('SEED_ADMIN_PASSWORD');
-
+        $email = config('admin_setup.email');
+        $jelszo = config('admin_setup.password');
         if ($email && $jelszo) {
             $letezik = DB::table('users')->where('email', $email)->exists();
 
