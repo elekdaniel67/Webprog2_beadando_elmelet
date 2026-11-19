@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KlubController;
 use App\Http\Controllers\KalkulatorController;
 use App\Http\Controllers\SutiController;
 use App\Models\Suti;
@@ -58,6 +59,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     ->parameters(['sutik' => 'suti'])
     ->except(['show'])
     ->middleware('can:manage-sutik');
+    Route::middleware('can:manage-sutik')->group(function () {
+        Route::get('/react', function () {
+            return view('react');
+        })->name('react');
+    
+        Route::get('/klubok', [KlubController::class, 'index']);
+        Route::post('/klubok', [KlubController::class, 'store']);
+        Route::put('/klubok/{klub}', [KlubController::class, 'update']);
+        Route::delete('/klubok/{klub}', [KlubController::class, 'destroy']);
+    });
 });
 
 Route::get('exercise1', function () {

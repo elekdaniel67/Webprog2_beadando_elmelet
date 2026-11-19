@@ -37,12 +37,15 @@
                     <a href="{{ route('uzenetek') }}" class="flex items-center px-6 py-3 text-sm font-medium text-gray-300 hover:bg-gray-900 hover:text-white transition">
                         <span class="mr-3">💬</span> Üzenetek
                     </a>
-                    {{-- JAVÍTVA: role === 1 (szám), mert a seeder így menti el --}}
                     @can('manage-sutik')
-                        <a href="{{ route('sutik.index') }}" class="flex items-center px-6 py-3 text-sm font-medium text-indigo-400 hover:bg-gray-900 hover:text-indigo-300 transition">
-                            <span class="mr-3">⚙️</span> Sütemények kezelése
-                        </a>
-                    @endcan
+                    <a href="{{ route('sutik.index') }}" class="flex items-center px-6 py-3 text-sm font-medium text-indigo-400 hover:bg-gray-900 hover:text-indigo-300 transition">
+                        <span class="mr-3">⚙️</span> Sütemények kezelése
+                    </a>
+
+                    <a href="{{ route('react') }}" class="flex items-center px-6 py-3 text-sm font-medium text-indigo-400 hover:bg-gray-900 hover:text-indigo-300 transition">
+                        <span class="mr-3">⚽</span> React – Klubok
+                    </a>
+                @endcan
                 @endauth
             </nav>
         </div>
