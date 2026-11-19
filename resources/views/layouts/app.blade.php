@@ -6,10 +6,10 @@
     <title>Prologue</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-900 text-gray-300 font-sans antialiased flex h-screen overflow-hidden">
+<body class="bg-gray-900 text-gray-300 font-sans antialiased flex flex-col md:flex-row min-h-screen md:h-screen md:overflow-hidden">
 
     
-    <aside class="w-80 bg-gray-950 flex flex-col justify-between border-r border-gray-800 h-full">
+    <aside class="w-full md:w-80 bg-gray-950 flex flex-col justify-between border-r border-gray-800 h-auto md:h-full">
         <div>
             
             <div class="p-6 text-center border-b border-gray-800">
@@ -69,7 +69,7 @@
     </aside>
 
     
-    <div class="flex-1 flex flex-col min-w-0 h-full">
+    <div class="flex-1 flex flex-col min-w-0 md:h-full">
     <main class="flex-1 overflow-y-auto bg-gray-900 p-10">
         @yield('content')
     </main>

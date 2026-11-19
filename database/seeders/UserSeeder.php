@@ -2,24 +2,57 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class UserSeeder extends Seeder
+class DatabaseSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'User1', 
-            'email' => 'aaa@aaa.hu', 
-            'password' => bcrypt('aaaaaaaa'), 
-            'role' => 2,
-        ]);
-        DB::table('users')->insert([
-            'name' => 'admin', 
-            'email' => 'bbb@bbb', 
-            'password' => bcrypt('bbbbbbbb'), 
-            'role' => 1, 
-        ]);
+        $this->call(UserSeeder::class);
+        $this->call(NbSeeder::class);
+        
+        $sutiPath = database_path('seeders/suti.txt');
+        if (file_exists($sutiPath)) {
+            $lines = file($sutiPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach (array_slice($lines, 1) as $line) {
+                [$id, $nev, $tipus, $dijazott] = explode("\t", $line);
+                DB::table('suti')->insert([
+                    'id' => $id,
+                    'nev' => trim($nev),
+                    'tipus' => trim($tipus),
+                    'dijazott' => (int)trim($dijazott),
+                ]);
+            }
+        }
+
+        
+        $arPath = database_path('seeders/ar.txt');
+        if (file_exists($arPath)) {
+            $lines = file($arPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach (array_slice($lines, 1) as $line) {
+                $parts = explode("\t", $line);
+                DB::table('ar')->insert([
+                    'id' => $parts[0],
+                    'sutiid' => $parts[1],
+                    'ertek' => $parts[2],
+                    'egyseg' => isset($parts[3]) ? trim($parts[3]) : null,
+                ]);
+            }
+        }
+
+        
+        $tartalomPath = database_path('seeders/tartalom.txt');
+        if (file_exists($tartalomPath)) {
+            $lines = file($tartalomPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach (array_slice($lines, 1) as $line) {
+                [$id, $sutiid, $mentes] = explode("\t", $line);
+                DB::table('tartalom')->insert([
+                    'id' => $id,
+                    'sutiid' => $sutiid,
+                    'mentes' => trim($mentes),
+                ]);
+            }
+        }
     }
 }

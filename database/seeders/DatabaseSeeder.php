@@ -10,11 +10,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(UserSeeder::class);
+        $this->call(NbSeeder::class);
         
         $sutiPath = database_path('seeders/suti.txt');
         if (file_exists($sutiPath)) {
             $lines = file($sutiPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            foreach (array_slice($lines, 1) as $line) { // kihagyjuk a fejlécet
+            foreach (array_slice($lines, 1) as $line) {
                 [$id, $nev, $tipus, $dijazott] = explode("\t", $line);
                 DB::table('suti')->insert([
                     'id' => $id,

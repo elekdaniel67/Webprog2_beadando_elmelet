@@ -26,5 +26,8 @@
                 {{ $slot }}
             </div>
         </div>
+        <footer class="bg-gray-900 px-6 py-4 text-center text-sm text-gray-400">
+            <p>Készítők: Nemes E. Lina (D4TUXP), Elek Dániel (XZN3PZ)</p>
+        </footer>
     </body>
 </html>
